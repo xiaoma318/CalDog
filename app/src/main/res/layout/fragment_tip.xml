@@ -19,15 +19,15 @@
             android:hint="number"
             android:textSize="20sp"
             android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:inputType="number|numberDecimal|numberSigned"/>
 
         <Button
             android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:text="Calculate" />
     </LinearLayout>
 
@@ -45,7 +45,7 @@
             android:id="@+id/rb_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:checked="true"
             android:text="10%"
             />
@@ -54,14 +54,14 @@
             android:id="@+id/rb_13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:text="13%" />
 
         <RadioButton
             android:id="@+id/rb_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:text="15%" />
 
         <RadioButton
@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_people"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:text="People"/>
 
 </LinearLayout>
@@ -108,7 +108,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Tip:"
-            android:gravity="right"
+            android:gravity="end"
             android:textSize="25sp"
             android:fontFamily="monospace"/>
         <TextView
@@ -132,7 +132,7 @@
            android:layout_weight="1"
            android:layout_height="wrap_content"
            android:text="Total:"
-           android:gravity="right"
+           android:gravity="end"
            android:textSize="25sp"
            android:fontFamily="monospace"/>
        <TextView
@@ -156,7 +156,7 @@
           android:layout_weight="1"
           android:layout_height="wrap_content"
           android:text="Average:"
-          android:gravity="right"
+          android:gravity="end"
           android:textSize="25sp"
           android:fontFamily="monospace"/>
       <TextView

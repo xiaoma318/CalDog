@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="C"
+            android:text="@string/celsius"
             android:textSize="40sp"
             />
 
@@ -45,9 +45,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="F"
+            android:text="@string/fahrenheit"
             android:textSize="40sp"
-            android:inputType="number|numberDecimal|numberSigned"
             />
     </LinearLayout>
 </LinearLayout>

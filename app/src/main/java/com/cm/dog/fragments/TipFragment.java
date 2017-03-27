@@ -18,18 +18,20 @@ import android.widget.TextView;
 
 import com.cm.dog.R;
 
+import java.util.Locale;
+
 
 /**
  * Created by chenm on 1/11/2017.
  */
 
 public class TipFragment extends Fragment {
-    EditText etInput = null;
-    TextView tvTip, tvTotal, tvAvg, tvPeople;
-    RadioGroup gbSelect = null;
-    Spinner spinnerPeople = null;
-    int people = 1;
-    String numbers[] = {"1","2","3","4","5","6","7","8"};
+    private EditText etInput = null;
+    private TextView tvTip, tvTotal, tvAvg, tvPeople;
+    private RadioGroup gbSelect = null;
+    private Spinner spinnerPeople = null;
+    private int people = 1;
+    private String numbers[] = {"1","2","3","4","5","6","7","8"};
 
     SparseArray<Double> rateMap = new SparseArray<Double>(4) {
         {
@@ -101,9 +103,9 @@ public class TipFragment extends Fragment {
         } catch (Exception e) {
         }
 
-        tvTip.setText(String.format("$%.1f", actualRate * input ));
-        tvTotal.setText(String.format("$%.1f", actualRate * input + input));
-        tvAvg.setText(String.format("$%.1f", (actualRate * input + input) / people));
+        tvTip.setText(String.format(Locale.US, "$%.1f", actualRate * input ));
+        tvTotal.setText(String.format(Locale.US,"$%.1f", actualRate * input + input));
+        tvAvg.setText(String.format(Locale.US, "$%.1f", (actualRate * input + input) / people));
 
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0);

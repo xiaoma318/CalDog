@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CalDog</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
 </resources>
