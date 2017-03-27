@@ -1,4 +1,4 @@
-package com.cm.caldog.fragments;
+package com.cm.dog.fragments;
 
 
 import android.content.Context;
@@ -9,12 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.cm.caldog.R;
+import com.cm.dog.R;
+
 
 /**
  * Created by chenm on 1/11/2017.
@@ -22,10 +25,11 @@ import com.cm.caldog.R;
 
 public class TipFragment extends Fragment {
     EditText etInput = null;
-    TextView tvResult, tvPeople;
+    TextView tvTip, tvTotal, tvAvg, tvPeople;
     RadioGroup gbSelect = null;
-    SeekBar seekBar = null;
+    Spinner spinnerPeople = null;
     int people = 1;
+    String numbers[] = {"1","2","3","4","5","6","7","8"};
 
     SparseArray<Double> rateMap = new SparseArray<Double>(4) {
         {
@@ -48,12 +52,27 @@ public class TipFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tip, container, false);
         etInput = (EditText) view.findViewById(R.id.et_input);
-        tvResult = (TextView) view.findViewById(R.id.tv_result);
+        tvTip = (TextView) view.findViewById(R.id.tv_tip);
+        tvTotal = (TextView) view.findViewById(R.id.tv_total);
+        tvAvg = (TextView) view.findViewById(R.id.tv_avg);
         tvPeople = (TextView) view.findViewById(R.id.tv_people);
         gbSelect = (RadioGroup) view.findViewById(R.id.gb_select);
-        seekBar = (SeekBar) view.findViewById(R.id.seekBar);
-        people = seekBar.getProgress() + 1;
-        tvPeople.setText(people + " ppl");
+        spinnerPeople = (Spinner) view.findViewById(R.id.spinner_people);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),R.layout.spinner_people, numbers);
+        spinnerPeople.setAdapter(adapter);
+        spinnerPeople.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cal();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         (view.findViewById(R.id.btn_ok)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,28 +81,10 @@ public class TipFragment extends Fragment {
             }
         });
 
-
         gbSelect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 cal();
-            }
-        });
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                people = seekBar.getProgress() + 1;
-                tvPeople.setText(people + " ppl");
-            }
-
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
 
@@ -94,12 +95,17 @@ public class TipFragment extends Fragment {
         int rate = gbSelect.getCheckedRadioButtonId();
         double actualRate = rateMap.get(rate);
         double input = 0;
-        try{
+        try {
+            people = Integer.parseInt(spinnerPeople.getSelectedItem().toString());
             input = Double.parseDouble(etInput.getText().toString());
-        }catch (Exception e){ }
+        } catch (Exception e) {
+        }
 
-        tvResult.setText(String.format("Tip: \t\t%.1f\nTotal: \t\t%.1f\nAvg: \t\t%.1f", actualRate * input, actualRate * input + input, (actualRate * input + input) / people));
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        tvTip.setText(String.format("$%.1f", actualRate * input ));
+        tvTotal.setText(String.format("$%.1f", actualRate * input + input));
+        tvAvg.setText(String.format("$%.1f", (actualRate * input + input) / people));
+
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0);
     }
 }

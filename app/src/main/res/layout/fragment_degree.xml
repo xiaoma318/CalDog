@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <EditText
+          android:id="@+id/etC"
+          android:layout_width="0dp"
+          android:layout_height="150dp"
+          android:layout_weight="1"
+          android:textSize="50sp"
+          android:textAlignment="center"
+          android:inputType="number|numberDecimal|numberSigned"
+          />
+
+      <EditText
+          android:id="@+id/etF"
+          android:layout_width="0dp"
+          android:layout_height="150dp"
+          android:layout_weight="1"
+          android:textSize="50sp"
+          android:textAlignment="center"
+          android:inputType="number|numberDecimal|numberSigned"
+          />
+  </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="C"
+            android:textSize="40sp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="F"
+            android:textSize="40sp"
+            android:inputType="number|numberDecimal|numberSigned"
+            />
+    </LinearLayout>
+</LinearLayout>
